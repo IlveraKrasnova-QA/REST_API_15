@@ -11,6 +11,7 @@ public class SimpleTests {
     void successfulUsersNameSearchTest () {
         get("https://reqres.in/api/users/2")
                 .then()
+                .log().all()
                 .statusCode(200)
                 .body("data.first_name", is("Janet"));
     }
@@ -21,9 +22,12 @@ public class SimpleTests {
         given()
                 .body(newUser)
                 .contentType(JSON)
+                .log().uri()
                 .when()
                 .post("https://reqres.in/api/users")
                 .then()
+                .log().status()
+                .log().body()
                 .statusCode(201)
                 .body("name", is("morpheus"))
                 .body("job", is("leader"));
@@ -35,6 +39,7 @@ public class SimpleTests {
         given()
                 .body(nullUser)
                 .contentType(JSON)
+                .log().uri()
                 .when()
                 .post("https://reqres.in/api/users")
                 .then()
@@ -51,6 +56,7 @@ public class SimpleTests {
         given()
                 .body(userWithoutJob)
                 .contentType(JSON)
+                .log().uri()
                 .when()
                 .post("https://reqres.in/api/users")
                 .then()
@@ -67,6 +73,7 @@ public class SimpleTests {
         given()
                 .body(user)
                 .contentType(JSON)
+                .log().uri()
                 .when()
                 .delete("https://reqres.in/api/users/2")
                 .then()
