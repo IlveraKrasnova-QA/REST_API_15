@@ -5,11 +5,11 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
 
-public class SimpleTests {
+public class SimpleTests extends TestBase {
 
     @Test
     void successfulUsersNameSearchTest () {
-        get("https://reqres.in/api/users/2")
+        get("/users/2")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -24,7 +24,7 @@ public class SimpleTests {
                 .contentType(JSON)
                 .log().uri()
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -41,7 +41,7 @@ public class SimpleTests {
                 .contentType(JSON)
                 .log().uri()
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -58,7 +58,7 @@ public class SimpleTests {
                 .contentType(JSON)
                 .log().uri()
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -75,7 +75,7 @@ public class SimpleTests {
                 .contentType(JSON)
                 .log().uri()
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("/users/2")
                 .then()
                 .log().status()
                 .log().body()
